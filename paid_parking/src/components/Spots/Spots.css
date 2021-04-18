@@ -1,0 +1,15 @@
+.carIcon {
+    font-size: 6em;
+    
+    padding: 30px 20px;
+}
+
+.carIcon:hover {
+    cursor: pointer;
+    /* color: rgb(95, 212, 95); */
+}
+
+#firstLine,
+#secondLine {
+    text-align: center;
+}
