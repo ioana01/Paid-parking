@@ -1,0 +1,67 @@
+#userContainer {
+    margin: 0;
+    margin-left: 32.5%;
+    width: 35%;
+    padding: 50px 50px;
+    margin-top: 50px;
+    margin-bottom: 100px;
+
+    border-radius: 5px;
+    background-color: #f2f2f2;
+}
+
+.summaryLabel {
+    font-size: 20px;
+}
+
+.summaryLabel span{
+    margin-right: 10px;
+}
+
+#payBtn {
+    padding: 10px 20px;
+    margin: 10px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: #5abeec;
+
+    margin-top: 40px;
+    width: 40%;
+    margin-left: 30%;
+}
+
+#payBtn:hover {
+    background-color: #32a3d8;
+    cursor: pointer;
+}
+
+#noCar {
+    color: #e93d3d;
+    margin-bottom: 30px;
+}
+
+@media (max-width: 850px) {
+    #userContainer {
+        width: 50%;
+        margin-left: 25%;
+    }
+
+    #payBtn {
+        width: 100%;
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 650px) {
+    #userContainer {
+        width: 70%;
+        margin-left: 15%;
+        padding: 50px 25px;
+    }
+
+    #noCar {
+        font-size: 20px;
+    }
+}

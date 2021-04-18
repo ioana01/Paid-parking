@@ -53,3 +53,15 @@
 #formLabel2  {
     text-align: left;
 }
+
+@media (max-width: 750px) {
+    #Container {
+        width: 70%;
+        margin-left: 15%;
+    }
+
+    #sendBtn {
+        width: 100%;
+        margin-left: 0;
+    }
+}

@@ -6,10 +6,22 @@
 
 .carIcon:hover {
     cursor: pointer;
-    /* color: rgb(95, 212, 95); */
 }
 
 #firstLine,
 #secondLine {
     text-align: center;
+}
+
+@media (max-width: 750px) {
+    .carIcon {
+        font-size: 4em;
+    }
+}
+
+@media (max-width: 550px) {
+    .carIcon {
+        font-size: 2em;
+        padding: 30px 15px;
+    }
 }

@@ -5,6 +5,7 @@ const qs = require('qs');
 export const getOccupiedSpotsUrl = config.apiUrl + '/parking'
 export const setCarUrl = config.apiUrl + '/parking'
 export const getCarSummaryUrl = config.apiUrl + '/parking/'
+export const deleteCarUrl = config.apiUrl + '/parking/'
 
 export function getOccupiedSpots(setSpots) {
     axios({
@@ -41,6 +42,17 @@ export function getCarSummary(carId, showCarSummary) {
     }).then((response) => {
         console.log(response);
         showCarSummary(response.data);
+    }, (error) => {
+        console.log(error);
+    })
+}
+
+export function deleteCar(carId) {
+    axios({
+        method: 'delete',
+        url:  deleteCarUrl + carId,
+    }).then((response) => {
+        console.log(response);
     }, (error) => {
         console.log(error);
     })

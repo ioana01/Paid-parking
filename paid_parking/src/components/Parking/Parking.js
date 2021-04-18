@@ -1,13 +1,7 @@
 import React, { Component } from 'react';
 import './Parking.css'
-import Navbar from '../Navbar/Navbar'
 import Spots from '../Spots/Spots'
-import {
-    BrowserRouter as Router,
-    Redirect
-} from "react-router-dom";
 import { getOccupiedSpots, postCar } from '../../helpers/apis'
-
 
 class Parking extends Component {
     constructor(props) {
@@ -25,7 +19,6 @@ class Parking extends Component {
                 error: "Please insert your registration number"
             },
             selectedSpot: "",
-            clickedBtn: false, 
             userData: {}
         }
 
@@ -75,6 +68,11 @@ class Parking extends Component {
             return;
         }
 
+        // if(localStorage.getItem('carId') !== -1) {
+        //     alert("You already have a car registered");
+        //     return;
+        // }
+
         if(!document.getElementById("name").value && !document.getElementById("registrationNumber").value){
             alert("Please insert your credentials");
             return;
@@ -91,18 +89,18 @@ class Parking extends Component {
         let date = new Date()
         let userData = {
             "startHour": date.getHours().toString() + ":" + date.getMinutes().toString(),
+            "exactDate": new Date().getTime(),
             "spot": this.state.selectedSpot,
             "name": this.state.name.value,
             "registrationNumber": this.state.registrationNumber.value
         }
 
-        // this.props.updateUserData(userData);
         this.setState({userData: userData});
         postCar(userData);
         localStorage.setItem('carId', this.state.occupiedSpots.length);
 
-        window.location.reload();
-        this.state.clickedBtn = true;
+        let myPromise = new Promise(window.location.reload());
+        myPromise.then(alert("Car registered successfully"));
     }
 
     handleSelectedSpot(car) {
@@ -111,16 +109,6 @@ class Parking extends Component {
     }
 
     render() {
-        // if(this.state.clickedBtn) {
-        //     let data = this.state.userData;
-        //     this.state.clickedBtn = false;
-        //     console.log(this.state.userData);
-        //     return <Redirect
-        //                 to={{
-        //                 pathname: "summary",
-        //                 state: { userData: data }}}/>
-        // }
-
         return(
             <>
                 <p id="availableSpotsNumber">Available spots: {this.state.availableSpots}</p>

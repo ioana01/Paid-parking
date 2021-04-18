@@ -18,7 +18,7 @@ class Spots extends Component {
             return;
         }
 
-        if(this.state.checked === true && e.target != this.state.lastChecked) {
+        if(this.state.checked === true && e.target !== this.state.lastChecked) {
             this.state.lastChecked.style.color = 'green';
         } else {
             this.setState({checked: true});
@@ -42,18 +42,18 @@ class Spots extends Component {
         return(
             <>
                 <div id="firstLine">
-                    <i onClick={this.selectSpot} class="fas fa-car carIcon" id="0"></i>
-                    <i onClick={this.selectSpot} class="fas fa-car carIcon" id="1"></i>
-                    <i onClick={this.selectSpot} class="fas fa-car carIcon" id="2"></i>
-                    <i onClick={this.selectSpot} class="fas fa-car carIcon" id="3"></i>
-                    <i onClick={this.selectSpot} class="fas fa-car carIcon" id="4"></i>
+                    <i onClick={this.selectSpot} className="fas fa-car carIcon" id="0"></i>
+                    <i onClick={this.selectSpot} className="fas fa-car carIcon" id="1"></i>
+                    <i onClick={this.selectSpot} className="fas fa-car carIcon" id="2"></i>
+                    <i onClick={this.selectSpot} className="fas fa-car carIcon" id="3"></i>
+                    <i onClick={this.selectSpot} className="fas fa-car carIcon" id="4"></i>
                 </div>
                 <div id="secondLine">
-                    <i onClick={this.selectSpot} class="fas fa-car carIcon" id="5"></i>
-                    <i onClick={this.selectSpot} class="fas fa-car carIcon" id="6"></i>
-                    <i onClick={this.selectSpot} class="fas fa-car carIcon" id="7"></i>
-                    <i onClick={this.selectSpot} class="fas fa-car carIcon" id="8"></i>
-                    <i onClick={this.selectSpot} class="fas fa-car carIcon" id="9"></i>
+                    <i onClick={this.selectSpot} className="fas fa-car carIcon" id="5"></i>
+                    <i onClick={this.selectSpot} className="fas fa-car carIcon" id="6"></i>
+                    <i onClick={this.selectSpot} className="fas fa-car carIcon" id="7"></i>
+                    <i onClick={this.selectSpot} className="fas fa-car carIcon" id="8"></i>
+                    <i onClick={this.selectSpot} className="fas fa-car carIcon" id="9"></i>
                 </div>
             </>
         );
