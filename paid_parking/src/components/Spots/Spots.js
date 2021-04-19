@@ -13,29 +13,29 @@ class Spots extends Component {
     }
 
     selectSpot(e) {
-        if(e.target.style.color === 'red') {
+        if(e.target.classList.contains("redColor")) {
             alert("The spot is already take");
             return;
         }
 
-        if(this.state.checked === true && e.target !== this.state.lastChecked) {
-            this.state.lastChecked.style.color = 'green';
+        if(this.state.checked === true 
+            && e.target !== this.state.lastChecked 
+            && this.state.lastChecked.classList.contains("grayColor")) {
+            this.state.lastChecked.classList.toggle("grayColor");
         } else {
             this.setState({checked: true});
         }
 
-        console.log(e.target.id);
-        if(e.target.style.color === 'yellow') {
-            e.target.style.color = 'green';
+        if(this.state.lastChecked.classList && this.state.lastChecked.classList.contains("grayColor")) {
             this.props.handleSelectedSpot("");
-        } else {
-            e.target.style.color = 'yellow';
+        } else if(!this.state.lastChecked.classList) {
             this.props.handleSelectedSpot(e.target.id);
-        }
+        } else if(this.state.lastChecked.classList.contains("greenColor")){
+            this.props.handleSelectedSpot(e.target.id);
+        } 
 
+        e.target.classList.toggle("grayColor");
         this.setState({lastChecked: e.target});
-
-        // #e93d3d, #5fd45f
     }
 
     render() {

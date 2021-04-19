@@ -4,6 +4,18 @@
     padding: 30px 20px;
 }
 
+.greenColor {
+    color: #5fd45f;
+}
+
+.redColor {
+    color: #e93d3d;
+}
+
+.grayColor {
+    color: gray;
+}
+
 .carIcon:hover {
     cursor: pointer;
 }

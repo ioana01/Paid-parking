@@ -18,8 +18,7 @@ class Parking extends Component {
                 value: "",
                 error: "Please insert your registration number"
             },
-            selectedSpot: "",
-            userData: {}
+            selectedSpot: ""
         }
 
         this.handleChange = this.handleChange.bind(this);
@@ -38,12 +37,12 @@ class Parking extends Component {
 
         let cars = document.getElementsByClassName("carIcon");
         for(let i = 0; i < this.state.occupiedSpots.length; i++) {
-            cars[this.state.occupiedSpots[i].spot].style.color = 'red';
+            cars[parseInt(this.state.occupiedSpots[i].spot) - 1].classList.toggle("redColor");
         }
 
         for(let i = 0; i < cars.length; i++) {
-            if(cars[i].style.color !== 'red') {
-                cars[i].style.color = 'green';
+            if(!cars[i].classList.contains("redColor")) {
+                cars[i].classList.toggle("greenColor");
             }
         }
     }
@@ -60,6 +59,7 @@ class Parking extends Component {
         event.preventDefault();
 
         if(this.state.availableSpots === 0) {
+            alert("No available spots left");
             return;
         }
 
@@ -68,10 +68,10 @@ class Parking extends Component {
             return;
         }
 
-        // if(localStorage.getItem('carId') !== -1) {
-        //     alert("You already have a car registered");
-        //     return;
-        // }
+        if(parseInt(localStorage.getItem('carId')) !== -1) {
+            alert("You already have a car registered");
+            return;
+        }
 
         if(!document.getElementById("name").value && !document.getElementById("registrationNumber").value){
             alert("Please insert your credentials");
@@ -84,34 +84,32 @@ class Parking extends Component {
             return;
         } 
 
-        this.setState({availableSpots: this.state.availableSpots - 1});
-
         let date = new Date()
         let userData = {
             "startHour": date.getHours().toString() + ":" + date.getMinutes().toString(),
             "exactDate": new Date().getTime(),
-            "spot": this.state.selectedSpot,
+            "spot": parseInt(this.state.selectedSpot) + 1,
             "name": this.state.name.value,
             "registrationNumber": this.state.registrationNumber.value
         }
 
-        this.setState({userData: userData});
         postCar(userData);
-        localStorage.setItem('carId', this.state.occupiedSpots.length);
 
-        let myPromise = new Promise(window.location.reload());
-        myPromise.then(alert("Car registered successfully"));
+        let nextId = this.state.occupiedSpots.length > 0 ? 
+            parseInt(this.state.occupiedSpots[this.state.occupiedSpots.length - 1].id) + 1 : 1;
+        localStorage.setItem('carId', nextId);
+
+        window.location.reload();
     }
 
     handleSelectedSpot(car) {
-        console.log(car);
         this.setState({selectedSpot: car});
     }
 
     render() {
         return(
             <>
-                <p id="availableSpotsNumber">Available spots: {this.state.availableSpots}</p>
+                <p id="availableSpotsNumber">Available spots: <strong>{this.state.availableSpots}</strong></p>
                 <Spots occupiedSpots={this.state.occupiedSpots} handleSelectedSpot={this.handleSelectedSpot}/>
                 <div id="Container">
                     <form className="formFields">
@@ -122,7 +120,7 @@ class Parking extends Component {
                                 type="text" 
                                 id="name" 
                                 name="name" 
-                                placeholder="Your name.."></input>
+                                placeholder="Your name..."></input>
 
                         <label id="formLabel2">Registration number</label>
                         <input className="formInput" 

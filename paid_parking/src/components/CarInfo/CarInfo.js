@@ -14,7 +14,7 @@ class CarInfo extends Component {
 
     componentDidMount() {
         if(localStorage.getItem('carId') !== -1) {
-            getCarSummary(parseInt(localStorage.getItem('carId')) + 1, this.showCarSummary);
+            getCarSummary(localStorage.getItem('carId'), this.showCarSummary);
         }
     }
 
@@ -34,7 +34,7 @@ class CarInfo extends Component {
 
         document.getElementById("userName").innerHTML = data.name;
         document.getElementById("registration").innerHTML = data.registrationNumber;
-        document.getElementById("parkingSpot").innerHTML = parseInt(data.spot) + 1;
+        document.getElementById("parkingSpot").innerHTML = data.spot;
         document.getElementById("entry").innerHTML = data.startHour;
 
         let currentTime = new Date();
@@ -49,9 +49,9 @@ class CarInfo extends Component {
     }
 
     handleExit() {
-        if(localStorage.getItem('carId') != -1) {
+        if(parseInt(localStorage.getItem('carId')) !== -1) {
             this.setDefault();
-            console.log("AICI");
+
             deleteCar(localStorage.getItem('carId'));
             localStorage.setItem('carId', -1);
 
@@ -73,31 +73,29 @@ class CarInfo extends Component {
 
     render() {
         return(
-            <>
             <div id="userContainer">
                 <h3 id="noCar">No car registered</h3>
 
-                <label className="summaryLabel"><span><i class="fas fa-user-circle"></i></span>Name</label>
+                <label className="summaryLabel"><span><i className="fas fa-user-circle"></i></span>Name</label>
                 <p id="userName">-</p>
 
-                <label className="summaryLabel"><span><i class="fas fa-car"></i></span>Registration number</label>
+                <label className="summaryLabel"><span><i className="fas fa-car"></i></span>Registration number</label>
                 <p id="registration">-</p>
 
-                <label className="summaryLabel"><span><i class="fas fa-parking"></i></span>Parking spot</label>
+                <label className="summaryLabel"><span><i className="fas fa-parking"></i></span>Parking spot</label>
                 <p id="parkingSpot">-</p>
 
-                <label className="summaryLabel"><span><i class="fas fa-clock"></i></span>Entry time</label>
+                <label className="summaryLabel"><span><i className="fas fa-clock"></i></span>Entry time</label>
                 <p id="entry">-</p>
 
-                <label className="summaryLabel"><span><i class="fas fa-hourglass-start"></i></span>Time spent</label>
+                <label className="summaryLabel"><span><i className="fas fa-hourglass-start"></i></span>Time spent</label>
                 <p id="time">-</p>
 
-                <label className="summaryLabel"><span><i class="fas fa-dollar-sign"></i></span>Price</label>
+                <label className="summaryLabel"><span><i className="fas fa-dollar-sign"></i></span>Price</label>
                 <p id="price">-</p>
 
                 <input id="payBtn" onClick={this.handleExit} type="submit" value="Pay"></input>
             </div>
-            </>
         );
     }
 }

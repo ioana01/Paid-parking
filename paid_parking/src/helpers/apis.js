@@ -1,18 +1,17 @@
-import config from '../config.js'
+import apiUrl from '../config.js'
 const axios = require('axios');
 const qs = require('qs');
 
-export const getOccupiedSpotsUrl = config.apiUrl + '/parking'
-export const setCarUrl = config.apiUrl + '/parking'
-export const getCarSummaryUrl = config.apiUrl + '/parking/'
-export const deleteCarUrl = config.apiUrl + '/parking/'
+export const getOccupiedSpotsUrl = apiUrl + '/parking'
+export const setCarUrl = apiUrl + '/parking'
+export const getCarSummaryUrl = apiUrl + '/parking/'
+export const deleteCarUrl = apiUrl + '/parking/'
 
 export function getOccupiedSpots(setSpots) {
     axios({
         method: 'get',
         url:  getOccupiedSpotsUrl,
     }).then((response) => {
-        console.log(response);
         setSpots(response.data);
     }, (error) => {
         console.log(error);
@@ -40,7 +39,6 @@ export function getCarSummary(carId, showCarSummary) {
         method: 'get',
         url:  getCarSummaryUrl + carId,
     }).then((response) => {
-        console.log(response);
         showCarSummary(response.data);
     }, (error) => {
         console.log(error);
