@@ -36,10 +36,8 @@ class Parking extends Component {
         this.setState({availableSpots: 10 - this.state.occupiedSpots.length});
 
         if(this.state.availableSpots === 0) {
-            console.log("nu");
             document.getElementById("noSpotAvailable").style.display = "";
         } else {
-            console.log("da");
             document.getElementById("noSpotAvailable").style.display = "none";
         }
 

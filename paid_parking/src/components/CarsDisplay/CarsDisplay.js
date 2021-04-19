@@ -46,7 +46,7 @@ class CarsDisplay extends Component {
     }
 
     sortTable(n) {
-        let table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+        let table, rows, switching, i, x, y, shouldSwitch;
         table = document.getElementById("spotsTable");
 
         if(table) {
@@ -69,8 +69,7 @@ class CarsDisplay extends Component {
 
                 if(shouldSwitch) {
                     rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-                    switching = true;
-                    switchcount ++;      
+                    switching = true;     
                 } 
             }
         }
