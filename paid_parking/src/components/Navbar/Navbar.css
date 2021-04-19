@@ -1,3 +1,7 @@
+#appName:hover {
+    cursor:default;
+}
+
 @media (max-width: 992px) {
     .menuLink {
         text-align: center;

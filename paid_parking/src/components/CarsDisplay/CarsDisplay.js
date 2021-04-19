@@ -38,7 +38,7 @@ class CarsDisplay extends Component {
         cell1 = row.insertCell(1);
         cell2 = row.insertCell(2);
 
-        cell0.innerHTML = parseInt(elem.spot) + 1;
+        cell0.innerHTML = elem.spot;
         cell1.innerHTML = elem.name;
         cell2.innerHTML = elem.registrationNumber;
 
@@ -51,39 +51,27 @@ class CarsDisplay extends Component {
 
         if(table) {
             switching = true;
-            dir = "asc"; 
 
-            while (switching) {
+            while(switching) {
                 switching = false;
                 rows = table.rows;
 
-                for (i = 1; i < (rows.length - 1); i++) {
+                for(i = 1; i < (rows.length - 1); i++) {
                     shouldSwitch = false;
                     x = rows[i].getElementsByTagName("TD")[n];
                     y = rows[i + 1].getElementsByTagName("TD")[n];
 
-                    if (dir === "asc") {
-                        if (parseInt(x.innerHTML) > parseInt(y.innerHTML)) {
-                            shouldSwitch= true;
-                            break;
-                        }
-                    } else if (dir === "desc") {
-                        if (parseInt(x.innerHTML) < parseInt(y.innerHTML)) {
-                            shouldSwitch = true;
-                            break;
-                        }
+                    if (parseInt(x.innerHTML) > parseInt(y.innerHTML)) {
+                        shouldSwitch= true;
+                        break;
                     }
                 }
-                if (shouldSwitch) {
+
+                if(shouldSwitch) {
                     rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
                     switching = true;
                     switchcount ++;      
-                } else {
-                    if (switchcount === 0 && dir === "asc") {
-                        dir = "desc";
-                        switching = true;
-                    }
-                }
+                } 
             }
         }
     }

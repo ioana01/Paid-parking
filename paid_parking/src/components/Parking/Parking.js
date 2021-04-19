@@ -35,6 +35,14 @@ class Parking extends Component {
         this.setState({occupiedSpots: data});
         this.setState({availableSpots: 10 - this.state.occupiedSpots.length});
 
+        if(this.state.availableSpots === 0) {
+            console.log("nu");
+            document.getElementById("noSpotAvailable").style.display = "";
+        } else {
+            console.log("da");
+            document.getElementById("noSpotAvailable").style.display = "none";
+        }
+
         let cars = document.getElementsByClassName("carIcon");
         for(let i = 0; i < this.state.occupiedSpots.length; i++) {
             cars[parseInt(this.state.occupiedSpots[i].spot) - 1].classList.toggle("redColor");
@@ -68,11 +76,6 @@ class Parking extends Component {
             return;
         }
 
-        if(parseInt(localStorage.getItem('carId')) !== -1) {
-            alert("You already have a car registered");
-            return;
-        }
-
         if(!document.getElementById("name").value && !document.getElementById("registrationNumber").value){
             alert("Please insert your credentials");
             return;
@@ -83,6 +86,11 @@ class Parking extends Component {
             alert(this.state.registrationNumber.error);
             return;
         } 
+
+        if(parseInt(localStorage.getItem('carId')) !== -1) {
+            alert("You already have a car registered");
+            return;
+        }
 
         let date = new Date()
         let userData = {
@@ -113,6 +121,8 @@ class Parking extends Component {
                 <Spots occupiedSpots={this.state.occupiedSpots} handleSelectedSpot={this.handleSelectedSpot}/>
                 <div id="Container">
                     <form className="formFields">
+                        <h3 id="noSpotAvailable">No available spots</h3>
+
                         <label id="formLabel1">Name</label>
                         <input className="formInput" 
                                 value={this.state.name.value} 

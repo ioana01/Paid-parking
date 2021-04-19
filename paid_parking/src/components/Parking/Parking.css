@@ -54,6 +54,11 @@
     text-align: left;
 }
 
+#noSpotAvailable {
+    color: #e93d3d;
+    margin-bottom: 30px;
+}
+
 @media (max-width: 750px) {
     #Container {
         width: 70%;
@@ -63,5 +68,9 @@
     #sendBtn {
         width: 100%;
         margin-left: 0;
+    }
+
+    #noSpotAvailable {
+        font-size: 20px;
     }
 }
